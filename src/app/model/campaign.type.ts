@@ -5,7 +5,7 @@ export type Campaign = {
   keywords: string[];
   bid: number;
   fund: number;
-  status: 'on' | 'off';
+  status: boolean;
   town: string;
   radius: number;
 };
