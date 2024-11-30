@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ActivatedRoute } from '@angular/router';
 import { CampaignComponent } from '../components/campaign/campaign.component';
 import { Campaign } from '../model/campaign.type';
@@ -6,7 +7,7 @@ import { CampaignsService } from '../services/campaigns.service';
 
 @Component({
   selector: 'app-campaigns',
-  imports: [CampaignComponent],
+  imports: [CampaignComponent, MatSlideToggleModule],
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.scss',
 })

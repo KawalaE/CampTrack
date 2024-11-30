@@ -8,8 +8,5 @@ import { Campaign } from '../../model/campaign.type';
   styleUrl: './campaign.component.scss',
 })
 export class CampaignComponent {
-  campaignItems() {
-    throw new Error('Method not implemented.');
-  }
   campaign = input.required<Campaign>();
 }
