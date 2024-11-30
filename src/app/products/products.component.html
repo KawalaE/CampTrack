@@ -1,1 +1,28 @@
-<p>products works!</p>
+<h2>Products List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Campaigns</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (product of productItems(); track product.id){
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.stock }}</td>
+      <td>
+        <button>Manage campaigns</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
