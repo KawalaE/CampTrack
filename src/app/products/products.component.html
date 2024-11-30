@@ -20,7 +20,7 @@
       <td>{{ product.price }}</td>
       <td>{{ product.stock }}</td>
       <td>
-        <button>Manage campaigns</button>
+        <button (click)="manageCampaigns(product.id)">Manage campaigns</button>
       </td>
     </tr>
     }

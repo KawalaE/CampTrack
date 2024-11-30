@@ -1,9 +1,9 @@
 import { NgFor } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductComponent } from '../components/product/product.component';
 import { Product } from '../model/product.type';
 import { ProductsService } from '../services/products.service';
-
 @Component({
   selector: 'app-products',
   imports: [ProductComponent, NgFor],
@@ -17,4 +17,10 @@ export class ProductsComponent {
   ngOnInit(): void {
     this.productItems.set(this.productsService.mockProducts);
   }
+
+  manageCampaigns(productId: number) {
+    this.router.navigate(['/campaigns', productId]);
+  }
+
+  constructor(private router: Router) {}
 }
