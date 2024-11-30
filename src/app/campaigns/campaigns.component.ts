@@ -28,5 +28,6 @@ export class CampaignsComponent {
 
     this.campaignItems.set(filteredCampaigns);
   }
+
   constructor(private route: ActivatedRoute) {}
 }
