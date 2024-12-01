@@ -36,6 +36,7 @@ export class FormModalComponent {
     'Sale',
     'Launch',
   ];
+
   campaign = {
     name: '',
     keywords: [] as string[],
@@ -56,7 +57,8 @@ export class FormModalComponent {
     if (
       this.campaign.name &&
       this.campaign.keywords.length > 0 &&
-      this.campaign.bid > 0
+      this.campaign.bid > 0 &&
+      this.campaign.fund > 0
     ) {
       this.campaignCreated.emit(this.campaign);
       console.log(this.campaign);

@@ -58,13 +58,28 @@
   />
   <mat-icon matSuffix>attach_money</mat-icon>
 </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Fund</mat-label>
+  <input
+    matInput
+    type="number"
+    placeholder="Enter fund amount"
+    [(ngModel)]="campaign.fund"
+    name="fund"
+    required
+  />
+  <mat-icon matSuffix>attach_money</mat-icon>
+</mat-form-field>
 <mat-dialog-actions>
   <button
     mat-raised-button
     color="primary"
     (click)="submit()"
     [disabled]="
-      !campaign.name || campaign.keywords.length === 0 || campaign.bid <= 0
+      !campaign.name ||
+      campaign.keywords.length === 0 ||
+      campaign.bid <= 0 ||
+      campaign.fund <= 0
     "
   >
     Save
