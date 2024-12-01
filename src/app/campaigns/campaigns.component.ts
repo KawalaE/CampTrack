@@ -6,6 +6,7 @@ import { CampaignComponent } from '../components/campaign/campaign.component';
 import { FormModalComponent } from '../components/form-modal/form-modal.component';
 import { Campaign } from '../model/campaign.type';
 import { CampaignsService } from '../services/campaigns.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-campaigns',
@@ -22,6 +23,7 @@ import { CampaignsService } from '../services/campaigns.service';
 export class CampaignsComponent {
   campaignService = inject(CampaignsService);
   campaignItems = signal<Array<Campaign>>([]);
+  localStorageService = inject(LocalStorageService);
 
   productId!: number;
 
@@ -31,8 +33,8 @@ export class CampaignsComponent {
   }
 
   loadCampaigns() {
-    const allCampaigns = this.campaignService.mockCampaigns;
-
+    //const allCampaigns = this.campaignService.mockCampaigns;
+    const allCampaigns = this.localStorageService.getCampaigns();
     const filteredCampaigns = allCampaigns.filter(
       (campaign) => campaign.productId === this.productId
     );
@@ -54,14 +56,25 @@ export class CampaignsComponent {
 
         if (newCampaign) {
           const baseId = newCampaign.productId;
-          const highestId = this.campaignItems().reduce((maxId, campaign) => {
-            const campaignId = parseInt(campaign.id.toString().slice(4));
-            return campaignId > maxId ? campaignId : maxId;
-          }, 1);
+          const existingCampaigns = [
+            ...this.localStorageService.getCampaigns(),
+          ];
+          let highestId = 1;
+          if (existingCampaigns.length > 0) {
+            console.log(
+              'herre',
+              existingCampaigns[existingCampaigns.length - 1].id
+            );
+            highestId = Number(
+              existingCampaigns[existingCampaigns.length - 1].id
+                .toString()
+                .slice(-2)
+            );
+          }
 
           const newId = `${baseId}00${highestId + 1}`;
           newCampaign.id = Number(newId);
-
+          this.localStorageService.addCampaign(newCampaign);
           const updatedCampaigns = [...this.campaignItems(), newCampaign];
           this.campaignItems.set(updatedCampaigns);
           console.log(this.campaignItems);
