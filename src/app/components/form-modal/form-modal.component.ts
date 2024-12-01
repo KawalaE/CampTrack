@@ -83,7 +83,11 @@ export class FormModalComponent {
       this.campaign.productId = data.productId;
     }
   }
-
+  removeKeyword(index: number): void {
+    const updatedKeywords = [...this.campaign.keywords];
+    updatedKeywords.splice(index, 1);
+    this.campaign.keywords = updatedKeywords;
+  }
   submit() {
     if (
       this.campaign.name &&

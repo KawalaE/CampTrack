@@ -37,7 +37,7 @@
     <mat-chip-listbox>
       <mat-chip
         *ngFor="let keyword of campaign.keywords; let i = index"
-        (removed)="campaign.keywords.splice(i, 1)"
+        (removed)="removeKeyword(i)"
         [removable]="true"
       >
         {{ keyword }}
