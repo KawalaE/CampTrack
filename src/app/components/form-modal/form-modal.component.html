@@ -95,6 +95,11 @@
     <mat-hint align="end">Distance in km</mat-hint>
     <!-- Hint about km -->
   </mat-form-field>
+  <p>
+    <mat-slide-toggle [(ngModel)]="campaign.status" required>
+      Active
+    </mat-slide-toggle>
+  </p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button

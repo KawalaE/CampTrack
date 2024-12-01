@@ -10,7 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Campaign } from '../../model/campaign.type';
 @Component({
   selector: 'app-form-modal',
   imports: [
@@ -24,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     MatChipsModule,
     NgFor,
+    MatSlideToggleModule,
   ],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss',
@@ -44,13 +46,16 @@ export class FormModalComponent {
     'Phoenix',
   ];
 
-  campaign = {
+  campaign: Campaign = {
+    id: 0,
+    productId: 0,
     name: '',
-    keywords: [] as string[],
-    bid: 0 as number,
-    fund: 0 as number,
+    keywords: [],
+    bid: 0,
+    fund: 0,
+    status: false,
     town: '',
-    radius: 0 as number,
+    radius: 0,
   };
 
   @Output() campaignCreated = new EventEmitter<{
@@ -58,6 +63,7 @@ export class FormModalComponent {
     keywords: string[];
     bid: number;
     fund: number;
+    status: boolean;
     town: string;
     radius: number;
   }>();
