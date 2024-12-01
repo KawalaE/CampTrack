@@ -45,39 +45,57 @@
       </mat-chip>
     </mat-chip-listbox>
   </p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Bid</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Enter bid amount"
+      [(ngModel)]="campaign.bid"
+      name="bid"
+      required
+      min="0"
+    />
+    <mat-icon matSuffix>attach_money</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Fund</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Enter fund amount"
+      [(ngModel)]="campaign.fund"
+      name="fund"
+      required
+      min="0"
+    />
+    <mat-icon matSuffix>attach_money</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Town</mat-label>
+    <mat-select [(ngModel)]="campaign.town" name="town" required>
+      <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
+        town
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Radius (in km)</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Enter radius"
+      [(ngModel)]="campaign.radius"
+      name="radius"
+      required
+      min="1"
+    />
+    <mat-icon matSuffix>location_on</mat-icon>
+    <mat-hint align="end">Distance in km</mat-hint>
+    <!-- Hint about km -->
+  </mat-form-field>
 </mat-dialog-content>
-<mat-form-field appearance="fill">
-  <mat-label>Bid</mat-label>
-  <input
-    matInput
-    type="number"
-    placeholder="Enter bid amount"
-    [(ngModel)]="campaign.bid"
-    name="bid"
-    required
-  />
-  <mat-icon matSuffix>attach_money</mat-icon>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Fund</mat-label>
-  <input
-    matInput
-    type="number"
-    placeholder="Enter fund amount"
-    [(ngModel)]="campaign.fund"
-    name="fund"
-    required
-  />
-  <mat-icon matSuffix>attach_money</mat-icon>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Town</mat-label>
-  <mat-select [(ngModel)]="campaign.town" name="town" required>
-    <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
-      town
-    }}</mat-option>
-  </mat-select>
-</mat-form-field>
 <mat-dialog-actions>
   <button
     mat-raised-button
@@ -88,7 +106,8 @@
       campaign.keywords.length === 0 ||
       campaign.bid <= 0 ||
       campaign.fund <= 0 ||
-      !campaign.town
+      !campaign.town ||
+      campaign.radius <= 0
     "
   >
     Save

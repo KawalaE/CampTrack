@@ -50,6 +50,7 @@ export class FormModalComponent {
     bid: 0 as number,
     fund: 0 as number,
     town: '',
+    radius: 0 as number,
   };
 
   @Output() campaignCreated = new EventEmitter<{
@@ -58,6 +59,7 @@ export class FormModalComponent {
     bid: number;
     fund: number;
     town: string;
+    radius: number;
   }>();
 
   constructor(public dialogRef: MatDialogRef<FormModalComponent>) {}
@@ -68,7 +70,8 @@ export class FormModalComponent {
       this.campaign.keywords.length > 0 &&
       this.campaign.bid > 0 &&
       this.campaign.fund > 0 &&
-      this.campaign.town
+      this.campaign.town &&
+      this.campaign.radius
     ) {
       this.campaignCreated.emit(this.campaign);
       console.log(this.campaign);
