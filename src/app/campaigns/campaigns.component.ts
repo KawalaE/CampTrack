@@ -41,17 +41,35 @@ export class CampaignsComponent {
   }
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
-  openDialog() {
+
+  openDialog(): void {
     const dialogRef = this.matDialog.open(FormModalComponent, {
       width: '350px',
       data: { productId: this.productId },
     });
 
-    dialogRef.afterClosed().subscribe((newCampaign: Campaign | null) => {
-      if (newCampaign) {
-        const updatedCampaigns = [...this.campaignItems(), newCampaign];
-        this.campaignItems.set(updatedCampaigns);
+    dialogRef.componentInstance.campaignCreated.subscribe(
+      (newCampaign: Campaign | null) => {
+        console.log('newCamapaign', newCampaign);
+
+        if (newCampaign) {
+          const baseId = newCampaign.productId;
+          const highestId = this.campaignItems().reduce((maxId, campaign) => {
+            const campaignId = parseInt(campaign.id.toString().slice(4));
+            return campaignId > maxId ? campaignId : maxId;
+          }, 1);
+
+          const newId = `${baseId}00${highestId + 1}`;
+          newCampaign.id = Number(newId);
+
+          const updatedCampaigns = [...this.campaignItems(), newCampaign];
+          this.campaignItems.set(updatedCampaigns);
+          console.log(this.campaignItems);
+          console.log('New Campaign:', newCampaign);
+        } else {
+          console.log('No new campaign received.');
+        }
       }
-    });
+    );
   }
 }

@@ -89,6 +89,7 @@ export class FormModalComponent {
       this.campaign.radius
     ) {
       this.campaignCreated.emit(this.campaign);
+      console.log('form modal:', this.campaign);
       console.log(this.campaign);
       this.dialogRef.close();
     }
