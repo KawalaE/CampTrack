@@ -1,10 +1,14 @@
 <div class="campaign">
-  <p>id: {{ campaign().id }}</p>
-  <p>productId: {{ campaign().productId }}</p>
-  <p>name : {{ campaign().name }}</p>
-  <p>keywords: {{ campaign().keywords }}</p>
-  <p>bid: {{ campaign().bid }}</p>
-  <p>fund: {{ campaign().status }}</p>
-  <p>town: {{ campaign().town }}</p>
-  <p>radius: {{ campaign().radius }}</p>
+  <button mat-icon-button (click)="openEditDialog()">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <p>id: {{ campaign.id }}</p>
+  <p>productId: {{ campaign.productId }}</p>
+  <p>name : {{ campaign.name }}</p>
+  <p>keywords: {{ campaign.keywords }}</p>
+  <p>bid: {{ campaign.bid }}</p>
+  <p>fund: {{ campaign.status }}</p>
+  <p>town: {{ campaign.town }}</p>
+  <p>radius: {{ campaign.radius }}</p>
 </div>

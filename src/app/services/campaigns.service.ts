@@ -14,7 +14,7 @@ export class CampaignsService {
       bid: 120,
       fund: 300,
       status: true,
-      town: 'Warsaw',
+      town: 'Phoenix',
       radius: 5,
     },
     {
@@ -25,7 +25,7 @@ export class CampaignsService {
       bid: 140,
       fund: 300,
       status: true,
-      town: 'Krakow',
+      town: 'Los Angeles',
       radius: 15,
     },
     {
@@ -36,7 +36,7 @@ export class CampaignsService {
       bid: 140,
       fund: 300,
       status: true,
-      town: 'Krakow',
+      town: 'Houston',
       radius: 15,
     },
   ];

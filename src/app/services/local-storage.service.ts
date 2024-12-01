@@ -25,10 +25,26 @@ export class LocalStorageService {
   saveCampaigns(campaigns: Campaign[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(campaigns));
   }
-
+  setCampaigns(campaigns: Campaign[]) {
+    localStorage.setItem('campaigns', JSON.stringify(campaigns));
+  }
   addCampaign(campaign: Campaign): void {
     const campaigns = this.getCampaigns();
     campaigns.push(campaign);
     this.saveCampaigns(campaigns);
+  }
+  updateCampaign(updatedCampaign: Campaign): void {
+    const campaigns = this.getCampaigns();
+    const index = campaigns.findIndex(
+      (campaign) => campaign.id === updatedCampaign.id
+    );
+
+    if (index !== -1) {
+      campaigns[index] = updatedCampaign;
+      this.saveCampaigns(campaigns);
+    } else {
+      campaigns.push(updatedCampaign);
+      this.saveCampaigns(campaigns);
+    }
   }
 }

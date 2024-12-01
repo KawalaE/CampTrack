@@ -8,14 +8,15 @@ import { Campaign } from '../model/campaign.type';
 import { CampaignsService } from '../services/campaigns.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-campaigns',
   imports: [
     CampaignComponent,
     FormModalComponent,
     MatDialogModule,
-    MatDialogModule,
     MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.scss',
@@ -33,7 +34,6 @@ export class CampaignsComponent {
   }
 
   loadCampaigns() {
-    //const allCampaigns = this.campaignService.mockCampaigns;
     const allCampaigns = this.localStorageService.getCampaigns();
     const filteredCampaigns = allCampaigns.filter(
       (campaign) => campaign.productId === this.productId
@@ -61,10 +61,6 @@ export class CampaignsComponent {
           ];
           let highestId = 1;
           if (existingCampaigns.length > 0) {
-            console.log(
-              'herre',
-              existingCampaigns[existingCampaigns.length - 1].id
-            );
             highestId = Number(
               existingCampaigns[existingCampaigns.length - 1].id
                 .toString()
@@ -77,10 +73,6 @@ export class CampaignsComponent {
           this.localStorageService.addCampaign(newCampaign);
           const updatedCampaigns = [...this.campaignItems(), newCampaign];
           this.campaignItems.set(updatedCampaigns);
-          console.log(this.campaignItems);
-          console.log('New Campaign:', newCampaign);
-        } else {
-          console.log('No new campaign received.');
         }
       }
     );

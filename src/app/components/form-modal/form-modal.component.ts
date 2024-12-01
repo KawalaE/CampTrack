@@ -74,8 +74,12 @@ export class FormModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<FormModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { productId: number }
+    @Inject(MAT_DIALOG_DATA)
+    public data: { productId: number; campaign?: Campaign }
   ) {
+    if (data.campaign) {
+      this.campaign = { ...data.campaign };
+    }
     this.campaign.productId = data.productId;
   }
 
@@ -88,9 +92,6 @@ export class FormModalComponent {
       this.campaign.town &&
       this.campaign.radius
     ) {
-      this.campaignCreated.emit(this.campaign);
-      console.log('form modal:', this.campaign);
-      console.log(this.campaign);
       this.dialogRef.close();
     }
   }
