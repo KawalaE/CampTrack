@@ -46,12 +46,26 @@
     </mat-chip-listbox>
   </p>
 </mat-dialog-content>
+<mat-form-field appearance="fill">
+  <mat-label>Bid</mat-label>
+  <input
+    matInput
+    type="number"
+    placeholder="Enter bid amount"
+    [(ngModel)]="campaign.bid"
+    name="bid"
+    required
+  />
+  <mat-icon matSuffix>attach_money</mat-icon>
+</mat-form-field>
 <mat-dialog-actions>
   <button
     mat-raised-button
     color="primary"
     (click)="submit()"
-    [disabled]="!campaign.name || campaign.keywords.length === 0"
+    [disabled]="
+      !campaign.name || campaign.keywords.length === 0 || campaign.bid <= 0
+    "
   >
     Save
   </button>

@@ -39,17 +39,25 @@ export class FormModalComponent {
   campaign = {
     name: '',
     keywords: [] as string[],
+    bid: 0 as number,
+    fund: 0 as number,
   };
 
   @Output() campaignCreated = new EventEmitter<{
     name: string;
     keywords: string[];
+    bid: number;
+    fund: number;
   }>();
 
   constructor(public dialogRef: MatDialogRef<FormModalComponent>) {}
 
   submit() {
-    if (this.campaign.name && this.campaign.keywords.length > 0) {
+    if (
+      this.campaign.name &&
+      this.campaign.keywords.length > 0 &&
+      this.campaign.bid > 0
+    ) {
       this.campaignCreated.emit(this.campaign);
       console.log(this.campaign);
       this.dialogRef.close();
