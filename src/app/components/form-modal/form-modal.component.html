@@ -70,6 +70,14 @@
   />
   <mat-icon matSuffix>attach_money</mat-icon>
 </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Town</mat-label>
+  <mat-select [(ngModel)]="campaign.town" name="town" required>
+    <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
+      town
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>
 <mat-dialog-actions>
   <button
     mat-raised-button
@@ -79,7 +87,8 @@
       !campaign.name ||
       campaign.keywords.length === 0 ||
       campaign.bid <= 0 ||
-      campaign.fund <= 0
+      campaign.fund <= 0 ||
+      !campaign.town
     "
   >
     Save

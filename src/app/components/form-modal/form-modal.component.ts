@@ -36,12 +36,20 @@ export class FormModalComponent {
     'Sale',
     'Launch',
   ];
+  campaignTowns: string[] = [
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Houston',
+    'Phoenix',
+  ];
 
   campaign = {
     name: '',
     keywords: [] as string[],
     bid: 0 as number,
     fund: 0 as number,
+    town: '',
   };
 
   @Output() campaignCreated = new EventEmitter<{
@@ -49,6 +57,7 @@ export class FormModalComponent {
     keywords: string[];
     bid: number;
     fund: number;
+    town: string;
   }>();
 
   constructor(public dialogRef: MatDialogRef<FormModalComponent>) {}
@@ -58,7 +67,8 @@ export class FormModalComponent {
       this.campaign.name &&
       this.campaign.keywords.length > 0 &&
       this.campaign.bid > 0 &&
-      this.campaign.fund > 0
+      this.campaign.fund > 0 &&
+      this.campaign.town
     ) {
       this.campaignCreated.emit(this.campaign);
       console.log(this.campaign);
