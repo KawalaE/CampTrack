@@ -1,11 +1,15 @@
 import { NgFor } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips'; // Import for Chips
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -68,7 +72,12 @@ export class FormModalComponent {
     radius: number;
   }>();
 
-  constructor(public dialogRef: MatDialogRef<FormModalComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<FormModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { productId: number }
+  ) {
+    this.campaign.productId = data.productId;
+  }
 
   submit() {
     if (

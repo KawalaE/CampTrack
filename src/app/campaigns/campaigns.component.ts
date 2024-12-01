@@ -44,6 +44,7 @@ export class CampaignsComponent {
   openDialog() {
     const dialogRef = this.matDialog.open(FormModalComponent, {
       width: '350px',
+      data: { productId: this.productId },
     });
 
     dialogRef.afterClosed().subscribe((newCampaign: Campaign | null) => {
