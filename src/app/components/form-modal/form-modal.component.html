@@ -17,13 +17,41 @@
       <mat-icon matSuffix>title</mat-icon>
     </mat-form-field>
   </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Keywords</mat-label>
+      <mat-select
+        [(ngModel)]="campaign.keywords"
+        multiple
+        placeholder="Select keywords"
+      >
+        <mat-option
+          *ngFor="let keyword of keywordSuggestions"
+          [value]="keyword"
+        >
+          {{ keyword }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-chip-listbox>
+      <mat-chip
+        *ngFor="let keyword of campaign.keywords; let i = index"
+        (removed)="campaign.keywords.splice(i, 1)"
+        [removable]="true"
+      >
+        {{ keyword }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-listbox>
+  </p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button
     mat-raised-button
     color="primary"
     (click)="submit()"
-    [disabled]="!campaign.name"
+    [disabled]="!campaign.name || campaign.keywords.length === 0"
   >
     Save
   </button>
