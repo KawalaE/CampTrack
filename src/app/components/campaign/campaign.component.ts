@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Campaign } from '../../model/campaign.type';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { FormModalComponent } from '../form-modal/form-modal.component';
 @Component({
   selector: 'app-campaign',
@@ -11,7 +12,7 @@ import { FormModalComponent } from '../form-modal/form-modal.component';
 })
 export class CampaignComponent {
   @Input() campaign!: Campaign;
-  localStorageService: any;
+  localStorageService = inject(LocalStorageService);
 
   constructor(private matDialog: MatDialog) {}
 

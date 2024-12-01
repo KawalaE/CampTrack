@@ -79,8 +79,9 @@ export class FormModalComponent {
   ) {
     if (data.campaign) {
       this.campaign = { ...data.campaign };
+    } else {
+      this.campaign.productId = data.productId;
     }
-    this.campaign.productId = data.productId;
   }
 
   submit() {
@@ -92,6 +93,8 @@ export class FormModalComponent {
       this.campaign.town &&
       this.campaign.radius
     ) {
+      this.campaignCreated.emit(this.campaign);
+
       this.dialogRef.close();
     }
   }
