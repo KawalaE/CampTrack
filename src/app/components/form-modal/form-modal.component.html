@@ -1,1 +1,31 @@
-<p>form-modal works!</p>
+<button mat-icon-button matDialogClose>
+  <mat-icon>close</mat-icon>
+</button>
+<mat-dialog-content>
+  <header>
+    <h1>Create new campaign</h1>
+  </header>
+  <p>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Campaign name"
+        name="campaignName"
+        [(ngModel)]="campaign.name"
+        required
+      />
+      <mat-icon matSuffix>title</mat-icon>
+    </mat-form-field>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="submit()"
+    [disabled]="!campaign.name"
+  >
+    Save
+  </button>
+  <button mat-raised-button matDialogClose>Cancel</button>
+</mat-dialog-actions>

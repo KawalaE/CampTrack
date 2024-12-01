@@ -42,8 +42,15 @@ export class CampaignsComponent {
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
   openDialog() {
-    this.matDialog.open(FormModalComponent, {
+    const dialogRef = this.matDialog.open(FormModalComponent, {
       width: '350px',
+    });
+
+    dialogRef.afterClosed().subscribe((newCampaign: Campaign | null) => {
+      if (newCampaign) {
+        const updatedCampaigns = [...this.campaignItems(), newCampaign];
+        this.campaignItems.set(updatedCampaigns);
+      }
     });
   }
 }
