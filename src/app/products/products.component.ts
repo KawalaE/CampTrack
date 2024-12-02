@@ -49,6 +49,12 @@ export class ProductsComponent implements OnInit {
       return data.name.toLowerCase().includes(filter); // Filter by name
     };
   }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    this.dataSource.connect();
+  }
 
   manageCampaigns(productId: number) {
     this.router.navigate(['/campaigns', productId]);
