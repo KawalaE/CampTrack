@@ -12,3 +12,10 @@ body {
   margin: 0 auto;
   padding: 20px 20px 0 20px;
 }
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 5px !important; /* Example style */
+}
+::ng-deep .mat-mdc-raised-button:not(:disabled),
+.mat-mdc-raised-button {
+  border-radius: 5px !important;
+}

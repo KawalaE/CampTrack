@@ -1,0 +1,8 @@
+.warn-button {
+  color: #d74c4c;
+  &:hover {
+    color: #b22222;
+    background-color: #ffe5e5;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+}

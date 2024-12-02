@@ -1,12 +1,10 @@
-<button mat-icon-button matDialogClose>
-  <mat-icon>close</mat-icon>
-</button>
 <mat-dialog-content>
-  <header>
-    <h1>Create new campaign</h1>
-  </header>
+  <div class="dialog-title">
+    <h2>Add new campaign</h2>
+  </div>
+
   <p>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <input
         matInput
         placeholder="Campaign name"
@@ -18,7 +16,7 @@
     </mat-form-field>
   </p>
   <p>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Keywords</mat-label>
       <mat-select
         [(ngModel)]="campaign.keywords"
@@ -33,20 +31,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <mat-chip-listbox>
-      <mat-chip
-        *ngFor="let keyword of campaign.keywords; let i = index"
-        (removed)="removeKeyword(i)"
-        [removable]="true"
-      >
-        {{ keyword }}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-    </mat-chip-listbox>
   </p>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Bid</mat-label>
     <input
       matInput
@@ -59,7 +46,7 @@
     />
     <mat-icon matSuffix>attach_money</mat-icon>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Fund</mat-label>
     <input
       matInput
@@ -72,7 +59,7 @@
     />
     <mat-icon matSuffix>attach_money</mat-icon>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Town</mat-label>
     <mat-select [(ngModel)]="campaign.town" name="town" required>
       <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
@@ -80,7 +67,7 @@
       }}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Radius (in km)</mat-label>
     <input
       matInput
@@ -101,7 +88,16 @@
     </mat-slide-toggle>
   </p>
 </mat-dialog-content>
+
 <mat-dialog-actions>
+  <button
+    *ngIf="isEditMode"
+    (click)="deleteCampaign()"
+    mat-raised-button
+    class="delete-button"
+  >
+    Delete
+  </button>
   <button
     mat-raised-button
     color="primary"
@@ -118,12 +114,4 @@
     Save
   </button>
   <button mat-raised-button matDialogClose>Cancel</button>
-  <button
-    *ngIf="isEditMode"
-    (click)="deleteCampaign()"
-    mat-raised-button
-    color="warn"
-  >
-    Delete
-  </button>
 </mat-dialog-actions>

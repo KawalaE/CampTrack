@@ -5,3 +5,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.mat-mdc-raised-button:not(:disabled) {
+  border-radius: 5px;
+  text-wrap: nowrap;
+}
