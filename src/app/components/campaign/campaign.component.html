@@ -1,26 +1,56 @@
 <mat-card class="card" appearance="outlined">
   <mat-card-header class="card__header">
-    <div>
-      <mat-card-title>{{ campaign.name }}</mat-card-title>
-      <mat-card-subtitle>status: {{ campaign.status }}</mat-card-subtitle>
+    <div class="card__title">
+      <mat-card-title class="card__title__main">{{
+        campaign.name
+      }}</mat-card-title>
+      <mat-card-actions>
+        <button mat-icon-button (click)="openEditDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-actions>
     </div>
-    <mat-card-actions>
-      <button mat-icon-button (click)="openEditDialog()">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </mat-card-actions>
+    <mat-card-subtitle>
+      {{
+        campaign.status === true ? "Active" : "Not Active"
+      }}</mat-card-subtitle
+    >
   </mat-card-header>
-  <mat-card-content> </mat-card-content>
-  <p>
-    <mat-chip-set aria-label="Campaign tags selection">
-      <mat-chip *ngFor="let keyword of campaign.keywords" color="primary">
-        {{ keyword }}
-      </mat-chip>
-    </mat-chip-set>
-  </p>
-  <p>bid: {{ campaign.bid }}</p>
-  <p>fund: {{ campaign.fund }}</p>
-
-  <p>town: {{ campaign.town }}</p>
-  <p>radius: {{ campaign.radius }}</p>
+  <mat-card-content>
+    <p>
+      <mat-chip-set aria-label="Campaign tags selection">
+        <mat-chip *ngFor="let keyword of campaign.keywords" class="card__tag">
+          {{ keyword }}
+        </mat-chip>
+      </mat-chip-set>
+    </p>
+    <div class="card__section">
+      <div class="card__section__title">
+        <mat-icon>add_card</mat-icon>
+        <span>bid:</span>
+      </div>
+      <p class="card__section__value">{{ campaign.bid }} $</p>
+    </div>
+    <div class="card__section">
+      <div class="card__section__title">
+        <mat-icon>attach_money</mat-icon>
+        <span>fund:</span>
+      </div>
+      <p class="card__section__value">{{ campaign.fund }} $</p>
+    </div>
+    <div class="card__section">
+      <div class="card__section__title">
+        <mat-icon>location_city</mat-icon>
+        <span>town:</span>
+      </div>
+      <p class="card__section__value">{{ campaign.town }}</p>
+    </div>
+    <div class="card__section">
+      <div class="card__section__title">
+        <mat-icon>radar</mat-icon>
+        <span>radius:</span>
+      </div>
+      <p class="card__section__value">{{ campaign.radius }}</p>
+    </div>
+  </mat-card-content>
 </mat-card>

@@ -1,4 +1,31 @@
 .card__header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
+}
+.card__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card {
+  padding: 10px;
+  width: 20rem;
+  box-shadow: 0 0 10px rgb(228, 226, 226);
+}
+.card__title__main {
+  color: #5d5fef;
+}
+.card__section__title {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.card__section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card__section__value {
+  color: #5d5fef;
+  font-weight: 500;
 }
