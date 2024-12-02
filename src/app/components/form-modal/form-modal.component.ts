@@ -36,13 +36,7 @@ import { Campaign } from '../../model/campaign.type';
   styleUrl: './form-modal.component.scss',
 })
 export class FormModalComponent {
-  keywordSuggestions: string[] = [
-    'Marketing',
-    'Promotion',
-    'Discount',
-    'Sale',
-    'Launch',
-  ];
+  keywordSuggestions: string[] = ['discount', 'sale', 'launch'];
   campaignTowns: string[] = [
     'New York',
     'Los Angeles',

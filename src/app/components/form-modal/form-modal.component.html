@@ -11,6 +11,7 @@
         name="campaignName"
         [(ngModel)]="campaign.name"
         required
+        maxlength="28"
       />
       <mat-icon matSuffix>title</mat-icon>
     </mat-form-field>
@@ -43,6 +44,7 @@
       name="bid"
       required
       min="0"
+      max="1000000"
     />
     <mat-icon matSuffix>attach_money</mat-icon>
   </mat-form-field>
@@ -56,6 +58,7 @@
       name="fund"
       required
       min="0"
+      max="10000000"
     />
     <mat-icon matSuffix>attach_money</mat-icon>
   </mat-form-field>
@@ -77,6 +80,7 @@
       name="radius"
       required
       min="1"
+      max="15000"
     />
     <mat-icon matSuffix>location_on</mat-icon>
     <mat-hint align="end">Distance in km</mat-hint>
@@ -106,9 +110,12 @@
       !campaign.name ||
       campaign.keywords.length === 0 ||
       campaign.bid <= 0 ||
+      campaign.bid >= 1000000 ||
       campaign.fund <= 0 ||
+      campaign.fund >= 6000000 ||
       !campaign.town ||
-      campaign.radius <= 0
+      campaign.radius <= 0 ||
+      campaign.radius >= 1500
     "
   >
     Save

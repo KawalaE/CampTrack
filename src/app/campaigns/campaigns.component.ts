@@ -48,7 +48,6 @@ export class CampaignsComponent {
     const dialogRef = this.matDialog.open(FormModalComponent, {
       width: '350px',
       data: { productId: this.productId },
-      panelClass: 'custom-dialog',
     });
 
     dialogRef.componentInstance.campaignCreated.subscribe(
