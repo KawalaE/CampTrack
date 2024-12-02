@@ -1,17 +1,8 @@
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+}
 
-  th,
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #333;
-    color: white;
-  }
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }

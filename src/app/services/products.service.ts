@@ -46,6 +46,14 @@ export class ProductsService {
       price: 89.99,
       stock: 100,
     },
+    {
+      id: 6,
+      name: 'Electrffic Toothbrush',
+      description:
+        'Rechargeable electric toothbrush with multiple cleaning modes.',
+      price: 89.99,
+      stock: 100,
+    },
   ];
 
   constructor() {}
