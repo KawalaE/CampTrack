@@ -15,6 +15,7 @@
   &:hover {
     color: #e0e0e0;
   }
+  padding-left: calc((100vw - 1248px) / 2);
 }
 
 .header__spacer {
@@ -25,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding-right: calc((100vw - 1248px) / 2);
 }
 
 .header__emerald {

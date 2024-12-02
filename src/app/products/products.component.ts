@@ -44,6 +44,10 @@ export class ProductsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.productItems());
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.filterPredicate = (data: Product, filter: string) => {
+      return data.name.toLowerCase().includes(filter); // Filter by name
+    };
   }
 
   manageCampaigns(productId: number) {
@@ -51,18 +55,10 @@ export class ProductsComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.filter.length === 0) {
-      this.dataSource.filterPredicate = (data: Product, filter: string) => {
-        return true;
-      };
-    } else {
-      this.dataSource.filterPredicate = (data: Product, filter: string) => {
-        return data.name.toLowerCase().includes(filter);
-      };
-    }
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
   constructor(private router: Router) {}
