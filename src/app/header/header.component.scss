@@ -1,0 +1,32 @@
+.header {
+  background-color: #5d5fef;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 55px;
+}
+
+.header__title {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #e0e0e0;
+  }
+}
+
+.header__spacer {
+  flex: 1 1 auto;
+}
+
+.header__account {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__emerald {
+  color: rgb(50, 185, 133);
+}
