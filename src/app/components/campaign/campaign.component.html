@@ -10,7 +10,12 @@
         </button>
       </mat-card-actions>
     </div>
-    <mat-card-subtitle>
+    <mat-card-subtitle
+      [ngClass]="{
+        'campaign-active': campaign.status === true,
+        'campaign-not-active': campaign.status === false
+      }"
+    >
       {{
         campaign.status === true ? "Active" : "Not Active"
       }}</mat-card-subtitle
