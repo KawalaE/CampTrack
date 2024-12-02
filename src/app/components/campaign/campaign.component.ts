@@ -28,5 +28,13 @@ export class CampaignComponent {
       this.localStorageService.updateCampaign(this.campaign);
       console.log('Dialog closed', this.campaign);
     });
+    dialogRef.componentInstance.campaignDeleted.subscribe((campaignId) => {
+      this.deleteCampaign(campaignId);
+    });
+  }
+
+  deleteCampaign(campaignId: number): void {
+    this.localStorageService.deleteCampaign(campaignId);
+    console.log(`Campaign with ID ${campaignId} deleted.`);
   }
 }

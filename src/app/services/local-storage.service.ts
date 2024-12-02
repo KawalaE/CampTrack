@@ -47,4 +47,9 @@ export class LocalStorageService {
       this.saveCampaigns(campaigns);
     }
   }
+  deleteCampaign(campaignId: number): void {
+    const campaigns = this.getCampaigns();
+    const updatedCampaigns = campaigns.filter((c) => c.id !== campaignId);
+    localStorage.setItem(this.storageKey, JSON.stringify(updatedCampaigns));
+  }
 }

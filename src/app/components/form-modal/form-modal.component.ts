@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -30,6 +30,7 @@ import { Campaign } from '../../model/campaign.type';
     MatChipsModule,
     NgFor,
     MatSlideToggleModule,
+    NgIf,
   ],
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss',
@@ -72,6 +73,9 @@ export class FormModalComponent {
     radius: number;
   }>();
 
+  isEditMode: boolean = false;
+  @Output() campaignDeleted = new EventEmitter<number>();
+
   constructor(
     public dialogRef: MatDialogRef<FormModalComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -79,6 +83,7 @@ export class FormModalComponent {
   ) {
     if (data.campaign) {
       this.campaign = { ...data.campaign };
+      this.isEditMode = true;
     } else {
       this.campaign.productId = data.productId;
     }
@@ -87,6 +92,13 @@ export class FormModalComponent {
     const updatedKeywords = [...this.campaign.keywords];
     updatedKeywords.splice(index, 1);
     this.campaign.keywords = updatedKeywords;
+  }
+
+  deleteCampaign(): void {
+    if (confirm('Are you sure you want to delete this campaign?')) {
+      this.campaignDeleted.emit(this.campaign.id);
+      this.dialogRef.close();
+    }
   }
   submit() {
     if (
