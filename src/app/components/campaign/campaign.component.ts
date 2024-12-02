@@ -1,4 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+
+import { NgFor } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
@@ -6,9 +11,17 @@ import { Campaign } from '../../model/campaign.type';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { FormModalComponent } from '../form-modal/form-modal.component';
+
 @Component({
   selector: 'app-campaign',
-  imports: [MatIconModule, MatDialogModule],
+  imports: [
+    MatIconModule,
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule,
+    MatChipsModule,
+    NgFor,
+  ],
   templateUrl: './campaign.component.html',
   styleUrl: './campaign.component.scss',
 })

@@ -46,7 +46,7 @@ export class ProductsComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     this.dataSource.filterPredicate = (data: Product, filter: string) => {
-      return data.name.toLowerCase().includes(filter); // Filter by name
+      return data.name.toLowerCase().includes(filter);
     };
     this.adjustColumnVisibility();
     window.addEventListener('resize', () => this.adjustColumnVisibility());
@@ -67,11 +67,14 @@ export class ProductsComponent implements OnInit {
       ];
     }
   }
+  updatePaginatorLength() {
+    this.dataSource.paginator!.length = this.dataSource.filteredData.length;
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
+    this.updatePaginatorLength();
     this.dataSource.connect();
   }
 

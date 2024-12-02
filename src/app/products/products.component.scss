@@ -16,3 +16,6 @@ mat-paginator {
     display: none;
   }
 }
+.mat-mdc-button:not(:disabled) {
+  border-radius: 5px;
+}

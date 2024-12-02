@@ -1,8 +1,4 @@
-.campaign {
-  padding: 10px;
-  background: rgb(226, 226, 226);
-  display: inline-block;
-  border-radius: 15px;
-  border: 1px solid black;
-  margin: 10px;
+.card__header {
+  display: flex;
+  flex-direction: row;
 }

@@ -1,15 +1,26 @@
-<div class="campaign">
-  <button mat-icon-button (click)="openEditDialog()">
-    <mat-icon>edit</mat-icon>
-  </button>
-
-  <p>id: {{ campaign.id }}</p>
-  <p>productId: {{ campaign.productId }}</p>
-  <p>name : {{ campaign.name }}</p>
-  <p>keywords: {{ campaign.keywords }}</p>
+<mat-card class="card" appearance="outlined">
+  <mat-card-header class="card__header">
+    <div>
+      <mat-card-title>{{ campaign.name }}</mat-card-title>
+      <mat-card-subtitle>status: {{ campaign.status }}</mat-card-subtitle>
+    </div>
+    <mat-card-actions>
+      <button mat-icon-button (click)="openEditDialog()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content> </mat-card-content>
+  <p>
+    <mat-chip-set aria-label="Campaign tags selection">
+      <mat-chip *ngFor="let keyword of campaign.keywords" color="primary">
+        {{ keyword }}
+      </mat-chip>
+    </mat-chip-set>
+  </p>
   <p>bid: {{ campaign.bid }}</p>
   <p>fund: {{ campaign.fund }}</p>
-  <p>status: {{ campaign.status }}</p>
+
   <p>town: {{ campaign.town }}</p>
   <p>radius: {{ campaign.radius }}</p>
-</div>
+</mat-card>
