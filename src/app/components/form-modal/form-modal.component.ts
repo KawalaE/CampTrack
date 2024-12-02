@@ -95,10 +95,8 @@ export class FormModalComponent {
   }
 
   deleteCampaign(): void {
-    if (confirm('Are you sure you want to delete this campaign?')) {
-      this.campaignDeleted.emit(this.campaign.id);
-      this.dialogRef.close();
-    }
+    this.campaignDeleted.emit(this.campaign.id);
+    this.dialogRef.close();
   }
   submit() {
     if (
