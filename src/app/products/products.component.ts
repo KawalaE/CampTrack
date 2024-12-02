@@ -48,7 +48,26 @@ export class ProductsComponent implements OnInit {
     this.dataSource.filterPredicate = (data: Product, filter: string) => {
       return data.name.toLowerCase().includes(filter); // Filter by name
     };
+    this.adjustColumnVisibility();
+    window.addEventListener('resize', () => this.adjustColumnVisibility());
   }
+  adjustColumnVisibility() {
+    if (window.innerWidth < 550) {
+      this.displayedColumns = ['id', 'name', 'campaigns'];
+    } else if (window.innerWidth < 768) {
+      this.displayedColumns = ['id', 'name', 'price', 'stock', 'campaigns'];
+    } else {
+      this.displayedColumns = [
+        'id',
+        'name',
+        'description',
+        'price',
+        'stock',
+        'campaigns',
+      ];
+    }
+  }
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
