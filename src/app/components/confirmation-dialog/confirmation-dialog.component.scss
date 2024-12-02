@@ -6,3 +6,7 @@
     transition: color 0.3s ease, background-color 0.3s ease;
   }
 }
+.mat-mdc-raised-button:not(:disabled) {
+  border-radius: 5px;
+  text-wrap: nowrap;
+}

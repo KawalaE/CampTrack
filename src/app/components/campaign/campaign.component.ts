@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -28,6 +28,8 @@ import { FormModalComponent } from '../form-modal/form-modal.component';
 })
 export class CampaignComponent {
   @Input() campaign!: Campaign;
+  @Output() campaignDeleted = new EventEmitter<number>();
+
   localStorageService = inject(LocalStorageService);
 
   constructor(private matDialog: MatDialog) {}
@@ -55,6 +57,7 @@ export class CampaignComponent {
 
   deleteCampaign(campaignId: number): void {
     this.localStorageService.deleteCampaign(campaignId);
+    this.campaignDeleted.emit(campaignId);
     console.log(`Campaign with ID ${campaignId} deleted.`);
   }
 

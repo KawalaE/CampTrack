@@ -41,6 +41,12 @@ export class CampaignsComponent {
 
     this.campaignItems.set(filteredCampaigns);
   }
+  onCampaignDeleted(deletedCampaignId: number) {
+    const updatedCampaigns = this.campaignItems().filter(
+      (campaign) => campaign.id !== deletedCampaignId
+    );
+    this.campaignItems.set(updatedCampaigns);
+  }
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
 
