@@ -1,8 +1,10 @@
+<h2 class="campaigns_title">{{ productName() }}</h2>
 <mat-dialog-actions>
   <button mat-raised-button color="primary" (click)="openDialog()">
     Add New +
   </button>
 </mat-dialog-actions>
+
 <div class="campaigns">
   @for (campaign of campaignItems(); track campaign.id) {
   <app-campaign

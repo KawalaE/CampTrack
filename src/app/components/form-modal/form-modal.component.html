@@ -11,9 +11,10 @@
         name="campaignName"
         [(ngModel)]="campaign.name"
         required
-        maxlength="28"
+        maxlength="25"
       />
       <mat-icon matSuffix>title</mat-icon>
+      <mat-hint align="end">{{ campaign.name.length }} / 25</mat-hint>
     </mat-form-field>
   </p>
   <p>
@@ -33,59 +34,68 @@
       </mat-select>
     </mat-form-field>
   </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Bid</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter bid amount"
+        [(ngModel)]="campaign.bid"
+        name="bid"
+        required
+        min="10"
+        max="1000000"
+      />
+      <mat-icon matSuffix>attach_money</mat-icon>
+      <mat-hint align="start">Minimum bid amount is 10$ </mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Fund</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter fund amount"
+        [(ngModel)]="campaign.fund"
+        name="fund"
+        required
+        min="0"
+        [max]="maxFund"
+      />
+      <mat-icon matSuffix>attach_money</mat-icon>
+      <mat-hint align="start">Fund cannot exceed the emerald balance</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Town</mat-label>
+      <mat-select [(ngModel)]="campaign.town" name="town" required>
+        <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
+          town
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Radius (in km)</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter radius"
+        [(ngModel)]="campaign.radius"
+        name="radius"
+        required
+        min="1"
+        max="15000"
+      />
+      <mat-icon matSuffix>location_on</mat-icon>
+      <mat-hint class="form-informator">Distance in km</mat-hint>
+    </mat-form-field>
+  </p>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Bid</mat-label>
-    <input
-      matInput
-      type="number"
-      placeholder="Enter bid amount"
-      [(ngModel)]="campaign.bid"
-      name="bid"
-      required
-      min="0"
-      max="1000000"
-    />
-    <mat-icon matSuffix>attach_money</mat-icon>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Fund</mat-label>
-    <input
-      matInput
-      type="number"
-      placeholder="Enter fund amount"
-      [(ngModel)]="campaign.fund"
-      name="fund"
-      required
-      min="0"
-      max="10000000"
-    />
-    <mat-icon matSuffix>attach_money</mat-icon>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Town</mat-label>
-    <mat-select [(ngModel)]="campaign.town" name="town" required>
-      <mat-option *ngFor="let town of campaignTowns" [value]="town">{{
-        town
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Radius (in km)</mat-label>
-    <input
-      matInput
-      type="number"
-      placeholder="Enter radius"
-      [(ngModel)]="campaign.radius"
-      name="radius"
-      required
-      min="1"
-      max="15000"
-    />
-    <mat-icon matSuffix>location_on</mat-icon>
-    <mat-hint align="end">Distance in km</mat-hint>
-    <!-- Hint about km -->
-  </mat-form-field>
   <p>
     <mat-slide-toggle [(ngModel)]="campaign.status" required>
       Active
@@ -109,10 +119,10 @@
     [disabled]="
       !campaign.name ||
       campaign.keywords.length === 0 ||
-      campaign.bid <= 0 ||
+      campaign.bid <= 10 ||
       campaign.bid >= 1000000 ||
       campaign.fund <= 0 ||
-      campaign.fund >= 6000000 ||
+      campaign.fund > maxFund ||
       !campaign.town ||
       campaign.radius <= 0 ||
       campaign.radius >= 1500

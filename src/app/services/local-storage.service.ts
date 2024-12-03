@@ -79,16 +79,26 @@ export class LocalStorageService {
   }
 
   setEmeralds(amount: number): void {
-    localStorage.setItem(this.emeraldsKey, amount.toString());
+    const roundedAmount = this.roundToTwoDecimals(amount);
+    localStorage.setItem(this.emeraldsKey, roundedAmount.toString());
   }
 
   decreaseEmeralds(amount: number): void {
     const currentEmeralds = this.getEmeralds();
     const newEmeralds = currentEmeralds - amount;
-    this.setEmeralds(newEmeralds > 0 ? newEmeralds : 0);
+    const roundedEmeralds = this.roundToTwoDecimals(
+      newEmeralds > 0 ? newEmeralds : 0
+    );
+    this.setEmeralds(roundedEmeralds);
   }
+
   increaseEmeralds(amount: number): void {
     const currentEmeralds = this.getEmeralds();
-    this.setEmeralds(currentEmeralds + amount);
+    const newEmeralds = currentEmeralds + amount;
+    const roundedEmeralds = this.roundToTwoDecimals(newEmeralds);
+    this.setEmeralds(roundedEmeralds);
+  }
+  private roundToTwoDecimals(value: number): number {
+    return Math.round(value * 100) / 100;
   }
 }

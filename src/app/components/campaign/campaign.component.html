@@ -34,14 +34,18 @@
         <mat-icon>add_card</mat-icon>
         <span>bid:</span>
       </div>
-      <p class="card__section__value">{{ campaign.bid }} $</p>
+      <p class="card__section__value">
+        {{ roundToTwoDecimals(campaign.bid) }} $
+      </p>
     </div>
     <div class="card__section">
       <div class="card__section__title">
         <mat-icon>attach_money</mat-icon>
         <span>fund:</span>
       </div>
-      <p class="card__section__value">{{ campaign.fund }} $</p>
+      <p class="card__section__value">
+        {{ roundToTwoDecimals(campaign.fund) }} $
+      </p>
     </div>
     <div class="card__section">
       <div class="card__section__title">
@@ -55,7 +59,9 @@
         <mat-icon>radar</mat-icon>
         <span>radius:</span>
       </div>
-      <p class="card__section__value">{{ campaign.radius }} km</p>
+      <p class="card__section__value">
+        {{ roundToTwoDecimals(campaign.radius) }} km
+      </p>
     </div>
   </mat-card-content>
 </mat-card>

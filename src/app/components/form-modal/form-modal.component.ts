@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Inject, Output } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Campaign } from '../../model/campaign.type';
+import { LocalStorageService } from '../../services/local-storage.service';
 @Component({
   selector: 'app-form-modal',
   imports: [
@@ -37,6 +38,8 @@ import { Campaign } from '../../model/campaign.type';
 })
 export class FormModalComponent {
   keywordSuggestions: string[] = ['discount', 'sale', 'launch'];
+  localStorageService = inject(LocalStorageService);
+  maxFund: number;
   campaignTowns: string[] = [
     'New York',
     'Los Angeles',
@@ -78,9 +81,17 @@ export class FormModalComponent {
     if (data.campaign) {
       this.campaign = { ...data.campaign };
       this.isEditMode = true;
+      this.maxFund = this.getMaxFund();
     } else {
       this.campaign.productId = data.productId;
+      this.maxFund = this.getMaxFund();
     }
+  }
+  getMaxFund(): number {
+    if (this.isEditMode) {
+      return this.campaign.fund + this.localStorageService.getEmeralds();
+    }
+    return this.localStorageService.getEmeralds();
   }
   removeKeyword(index: number): void {
     const updatedKeywords = [...this.campaign.keywords];
@@ -96,8 +107,8 @@ export class FormModalComponent {
     if (
       this.campaign.name &&
       this.campaign.keywords.length > 0 &&
-      this.campaign.bid > 0 &&
-      this.campaign.fund > 0 &&
+      this.campaign.bid > 10 &&
+      this.campaign.fund <= this.getMaxFund() &&
       this.campaign.town &&
       this.campaign.radius
     ) {

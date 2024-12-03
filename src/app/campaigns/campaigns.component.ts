@@ -9,6 +9,7 @@ import { CampaignsService } from '../services/campaigns.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
 import { MatIconModule } from '@angular/material/icon';
+import { ProductsService } from '../services/products.service';
 @Component({
   selector: 'app-campaigns',
   imports: [
@@ -24,11 +25,20 @@ import { MatIconModule } from '@angular/material/icon';
 export class CampaignsComponent {
   campaignService = inject(CampaignsService);
   campaignItems = signal<Array<Campaign>>([]);
+  productName = signal<string>('');
   localStorageService = inject(LocalStorageService);
+  productsService = inject(ProductsService);
   productId!: number;
 
   ngOnInit() {
     this.productId = Number(this.route.snapshot.paramMap.get('productId'));
+    const product = this.productsService.mockProducts.find(
+      (product) => product.id === this.productId
+    );
+    if (product) {
+      this.productName.set(product.name);
+    }
+
     this.loadCampaigns();
   }
 
