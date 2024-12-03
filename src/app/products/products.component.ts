@@ -1,4 +1,12 @@
-import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -51,6 +59,10 @@ export class ProductsComponent implements OnInit {
     this.adjustColumnVisibility();
     window.addEventListener('resize', () => this.adjustColumnVisibility());
   }
+  @HostListener('window:resize', [])
+  onWindowResize() {
+    this.adjustColumnVisibility();
+  }
   adjustColumnVisibility() {
     if (window.innerWidth < 370) {
       this.displayedColumns = ['name', 'campaigns'];
@@ -68,6 +80,7 @@ export class ProductsComponent implements OnInit {
         'campaigns',
       ];
     }
+    this.cdr.detectChanges();
   }
   updatePaginatorLength() {
     this.dataSource.paginator!.length = this.dataSource.filteredData.length;
@@ -91,5 +104,5 @@ export class ProductsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 }
