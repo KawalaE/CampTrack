@@ -7,11 +7,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffff;
 }
 .mat-mdc-dialog-surface {
-  border-radius: 5px !important; /* Example style */
-}
-::ng-deep .mat-mdc-raised-button:not(:disabled),
-.mat-mdc-raised-button {
-  border-radius: 5px !important;
+  border-radius: 10px !important;
 }

@@ -1,6 +1,15 @@
 <mat-dialog-content>
-  <div class="dialog-title">
-    <h2>Add new campaign</h2>
+  <div class="dialog__title">
+    <h2>{{ isEditMode ? "Edit Campaign" : "Add New Campaign" }}</h2>
+    <button
+      *ngIf="isEditMode"
+      mat-icon-button
+      class="delete__button"
+      (click)="deleteCampaign()"
+      aria-hidden="false"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
   </div>
 
   <p>
@@ -65,7 +74,7 @@
         [max]="maxFund"
       />
       <mat-icon matSuffix>attach_money</mat-icon>
-      <mat-hint align="start">Fund cannot exceed the emerald balance</mat-hint>
+      <mat-hint align="start">Fund <= emerald balance</mat-hint>
     </mat-form-field>
   </p>
   <p>
@@ -104,14 +113,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button
-    *ngIf="isEditMode"
-    (click)="deleteCampaign()"
-    mat-raised-button
-    class="delete-button"
-  >
-    Delete
-  </button>
   <button
     mat-raised-button
     color="primary"

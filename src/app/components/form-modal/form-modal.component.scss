@@ -2,15 +2,15 @@ mat-form-field {
   width: 100%;
 }
 
-.dialog-title {
+.dialog__title {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  color: #757579;
+  color: rgb(78, 77, 77);
 }
 
-.delete-button {
+.delete__button {
   color: #d74c4c;
   &:hover {
     color: #b22222;

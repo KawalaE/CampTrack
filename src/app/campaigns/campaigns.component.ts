@@ -12,13 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProductsService } from '../services/products.service';
 @Component({
   selector: 'app-campaigns',
-  imports: [
-    CampaignComponent,
-    FormModalComponent,
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CampaignComponent, MatDialogModule, MatButtonModule, MatIconModule],
   templateUrl: './campaigns.component.html',
   styleUrl: './campaigns.component.scss',
 })
@@ -61,7 +55,7 @@ export class CampaignsComponent {
 
   openDialog(): void {
     const dialogRef = this.matDialog.open(FormModalComponent, {
-      width: '350px',
+      maxWidth: '350px',
       data: { productId: this.productId },
     });
 

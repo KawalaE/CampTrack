@@ -18,6 +18,17 @@ export class CampaignsService {
       radius: 5,
     },
     {
+      id: 2001,
+      productId: 2,
+      name: 'Smartphone launch',
+      keywords: ['launch'],
+      bid: 120,
+      fund: 300,
+      status: true,
+      town: 'Chicago',
+      radius: 5,
+    },
+    {
       id: 3001,
       productId: 3,
       name: 'Gaming laptop campaign',

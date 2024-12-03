@@ -1,16 +1,13 @@
-<h2 class="campaigns_title">{{ productName() }}</h2>
+<h2 class="campaigns__title">{{ productName() }}</h2>
 <mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="openDialog()">
-    Add New +
-  </button>
+  <button mat-raised-button (click)="openDialog()">Add New +</button>
 </mat-dialog-actions>
 
-<div class="campaigns">
+<div class="campaigns__list">
   @for (campaign of campaignItems(); track campaign.id) {
   <app-campaign
     [campaign]="campaign"
     (campaignDeleted)="onCampaignDeleted($event)"
   />
-
   }
 </div>

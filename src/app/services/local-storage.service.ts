@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Campaign } from '../model/campaign.type';
+import { roundToTwoDecimals } from '../utils';
 import { CampaignsService } from './campaigns.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +18,7 @@ export class LocalStorageService {
       this.saveCampaigns(mockCampaigns);
     }
     if (!localStorage.getItem(this.emeraldsKey)) {
-      this.setEmeralds(300);
+      this.setEmeralds(3000);
     }
   }
   getCampaigns(): Campaign[] {
@@ -79,14 +79,14 @@ export class LocalStorageService {
   }
 
   setEmeralds(amount: number): void {
-    const roundedAmount = this.roundToTwoDecimals(amount);
+    const roundedAmount = roundToTwoDecimals(amount);
     localStorage.setItem(this.emeraldsKey, roundedAmount.toString());
   }
 
   decreaseEmeralds(amount: number): void {
     const currentEmeralds = this.getEmeralds();
     const newEmeralds = currentEmeralds - amount;
-    const roundedEmeralds = this.roundToTwoDecimals(
+    const roundedEmeralds = roundToTwoDecimals(
       newEmeralds > 0 ? newEmeralds : 0
     );
     this.setEmeralds(roundedEmeralds);
@@ -95,10 +95,7 @@ export class LocalStorageService {
   increaseEmeralds(amount: number): void {
     const currentEmeralds = this.getEmeralds();
     const newEmeralds = currentEmeralds + amount;
-    const roundedEmeralds = this.roundToTwoDecimals(newEmeralds);
+    const roundedEmeralds = roundToTwoDecimals(newEmeralds);
     this.setEmeralds(roundedEmeralds);
-  }
-  private roundToTwoDecimals(value: number): number {
-    return Math.round(value * 100) / 100;
   }
 }
