@@ -7,6 +7,7 @@ mat-form-field {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  color: #757579;
 }
 
 .delete-button {
@@ -18,7 +19,7 @@ mat-form-field {
   }
 }
 mat-dialog-content {
-  overflow: hidden;
+  overflow: auto;
 }
 .mat-mdc-raised-button {
   border-radius: 5px;
