@@ -61,8 +61,6 @@ export class CampaignsComponent {
 
     dialogRef.componentInstance.campaignCreated.subscribe(
       (newCampaign: Campaign | null) => {
-        console.log('newCamapaign', newCampaign);
-
         if (newCampaign) {
           const baseId = newCampaign.productId;
           const existingCampaigns = [

@@ -52,7 +52,9 @@ export class ProductsComponent implements OnInit {
     window.addEventListener('resize', () => this.adjustColumnVisibility());
   }
   adjustColumnVisibility() {
-    if (window.innerWidth < 550) {
+    if (window.innerWidth < 370) {
+      this.displayedColumns = ['name', 'campaigns'];
+    } else if (window.innerWidth < 550) {
       this.displayedColumns = ['id', 'name', 'campaigns'];
     } else if (window.innerWidth < 768) {
       this.displayedColumns = ['id', 'name', 'price', 'stock', 'campaigns'];

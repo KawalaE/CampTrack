@@ -42,7 +42,6 @@ export class CampaignComponent {
     dialogRef.componentInstance.campaignCreated.subscribe((updatedCampaign) => {
       this.campaign = { ...this.campaign, ...updatedCampaign };
       this.localStorageService.updateCampaign(this.campaign);
-      console.log('Dialog closed', this.campaign);
     });
     dialogRef.componentInstance.campaignDeleted.subscribe((campaignId) => {
       this.openConfirmationDialog().subscribe((confirmed) => {
@@ -56,7 +55,6 @@ export class CampaignComponent {
   deleteCampaign(campaignId: number): void {
     this.localStorageService.deleteCampaign(campaignId);
     this.campaignDeleted.emit(campaignId);
-    console.log(`Campaign with ID ${campaignId} deleted.`);
   }
 
   openConfirmationDialog(): Observable<boolean> {
