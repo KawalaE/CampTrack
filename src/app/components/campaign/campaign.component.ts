@@ -29,7 +29,6 @@ import { FormModalComponent } from '../form-modal/form-modal.component';
 export class CampaignComponent {
   @Input() campaign!: Campaign;
   @Output() campaignDeleted = new EventEmitter<number>();
-
   localStorageService = inject(LocalStorageService);
 
   constructor(private matDialog: MatDialog) {}

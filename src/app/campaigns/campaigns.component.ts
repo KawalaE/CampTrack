@@ -25,7 +25,6 @@ export class CampaignsComponent {
   campaignService = inject(CampaignsService);
   campaignItems = signal<Array<Campaign>>([]);
   localStorageService = inject(LocalStorageService);
-
   productId!: number;
 
   ngOnInit() {
@@ -79,6 +78,8 @@ export class CampaignsComponent {
           this.localStorageService.addCampaign(newCampaign);
           const updatedCampaigns = [...this.campaignItems(), newCampaign];
           this.campaignItems.set(updatedCampaigns);
+
+          this.localStorageService.decreaseEmeralds(newCampaign.fund);
         }
       }
     );

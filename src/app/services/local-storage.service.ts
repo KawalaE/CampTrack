@@ -7,6 +7,7 @@ import { CampaignsService } from './campaigns.service';
 })
 export class LocalStorageService {
   private storageKey = 'campaigns';
+  private emeraldsKey = 'emeralds';
 
   constructor(private campaignsService: CampaignsService) {
     this.initializeLocalStorage();
@@ -15,6 +16,9 @@ export class LocalStorageService {
     if (!localStorage.getItem(this.storageKey)) {
       const mockCampaigns = this.campaignsService.mockCampaigns;
       this.saveCampaigns(mockCampaigns);
+    }
+    if (!localStorage.getItem(this.emeraldsKey)) {
+      this.setEmeralds(300);
     }
   }
   getCampaigns(): Campaign[] {
@@ -40,6 +44,15 @@ export class LocalStorageService {
     );
 
     if (index !== -1) {
+      const oldCampaign = campaigns[index];
+      const fundDifference = updatedCampaign.fund - oldCampaign.fund;
+
+      if (fundDifference > 0) {
+        this.decreaseEmeralds(fundDifference);
+      } else if (fundDifference < 0) {
+        this.increaseEmeralds(Math.abs(fundDifference));
+      }
+
       campaigns[index] = updatedCampaign;
       this.saveCampaigns(campaigns);
     } else {
@@ -49,7 +62,33 @@ export class LocalStorageService {
   }
   deleteCampaign(campaignId: number): void {
     const campaigns = this.getCampaigns();
-    const updatedCampaigns = campaigns.filter((c) => c.id !== campaignId);
-    localStorage.setItem(this.storageKey, JSON.stringify(updatedCampaigns));
+    const campaignToDelete = campaigns.find((c) => c.id === campaignId);
+
+    if (campaignToDelete) {
+      this.increaseEmeralds(campaignToDelete.fund);
+
+      const updatedCampaigns = campaigns.filter((c) => c.id !== campaignId);
+      this.saveCampaigns(updatedCampaigns);
+    }
+  }
+
+  /**Emeralds */
+  getEmeralds(): number {
+    const emeralds = localStorage.getItem(this.emeraldsKey);
+    return emeralds ? Number(emeralds) : 0;
+  }
+
+  setEmeralds(amount: number): void {
+    localStorage.setItem(this.emeraldsKey, amount.toString());
+  }
+
+  decreaseEmeralds(amount: number): void {
+    const currentEmeralds = this.getEmeralds();
+    const newEmeralds = currentEmeralds - amount;
+    this.setEmeralds(newEmeralds > 0 ? newEmeralds : 0);
+  }
+  increaseEmeralds(amount: number): void {
+    const currentEmeralds = this.getEmeralds();
+    this.setEmeralds(currentEmeralds + amount);
   }
 }
