@@ -9,3 +9,15 @@
   border-radius: 5px;
   text-wrap: nowrap;
 }
+
+/*Fix button shift*/
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+
+  button {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+}
