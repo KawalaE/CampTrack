@@ -1,59 +1,20 @@
-# CampTrack
+# Campaign Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+This project is a campaign management system where a predefined list of products can have associated campaigns. Each campaign is funded from an "emerald" balance, which is stored in the local storage. When a campaign is deleted, the funds are returned to the emerald account.
 
-## Development server
+Local storage is used to persist both the campaigns and the emerald balance, ensuring that data is retained even after page reloads.
 
-To start a local development server, run:
+This is my first project built with Angular, where I utilized Angular and Angular Material UI to create an interface. In the future, I plan to integrate a backend system and allow users to add products and manage campaigns dynamically.
 
-```bash
-ng serve
-```
+You can check out the live version of the app [here](https://camp-track.vercel.app/).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Technologies Used:
 
-## Code scaffolding
+- Angular
+- Angular Material UI
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Pictures
 
-```bash
-ng generate component component-name
-```
+![Campaign Management App](public/main-page.png)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Campaign Management App](public/campaign-page.png)
