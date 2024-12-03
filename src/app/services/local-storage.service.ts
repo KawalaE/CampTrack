@@ -72,7 +72,7 @@ export class LocalStorageService {
     }
   }
 
-  /**Emeralds */
+  /*Emeralds */
   getEmeralds(): number {
     const emeralds = localStorage.getItem(this.emeraldsKey);
     return emeralds ? Number(emeralds) : 0;
